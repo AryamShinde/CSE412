@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Reviews</h2>
+
+<!-- Add New Review Form -->
+<form method="POST" class="mb-4">
+    <fieldset>
+        <legend>Add New Review</legend>
+        <label for="customer_id">Customer:</label>
+        <select name="customer_id" id="customer_id" class="form-select" required>
+            <option value="" disabled selected>Select a customer</option>
+            {% for customer in customers %}
+            <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="menu_item_id">Menu Item:</label>
+        <select name="menu_item_id" id="menu_item_id" class="form-select" required>
+            <option value="" disabled selected>Select a menu item</option>
+            {% for item in menu_items %}
+            <option value="{{ item[0] }}">{{ item[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating" id="rating" class="form-control" min="1" max="5" required><br><br>
+
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" class="form-control" rows="3" placeholder="Add your comment here..."></textarea><br><br>
+
+        <button type="submit" class="btn btn-primary">Add Review</button>
+    </fieldset>
+</form>
+
+<!-- Display Existing Reviews -->
+<h3>Existing Reviews</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Review ID</th>
+            <th>Customer</th>
+            <th>Menu Item</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in reviews %}
+        <tr>
+            <td>{{ review[0] }}</td>
+            <td>{{ review[1] }}</td>
+            <td>{{ review[2] }}</td>
+            <td>{{ review[3] }}</td>
+            <td>{{ review[4] }}</td>
+            <td>{{ review[5] }}</td>
+        </tr>
+        {% endfor %}
+        {% if reviews|length == 0 %}
+        <tr>
+            <td colspan="6" class="text-center">No reviews found.</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

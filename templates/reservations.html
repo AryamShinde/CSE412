@@ -4,7 +4,24 @@
 <a href="/reservations/add">Add New Reservation</a>
 <ul>
     {% for res in reservations %}
-    <li>Reservation ID: {{ res[0] }}, Customer ID: {{ res[1] }}, Time: {{ res[2] }}, Party Size: {{ res[3] }}, Status: {{ res[5] }}</li>
+    <li>
+        Reservation ID: {{ res[0] }}, Customer ID: {{ res[1] }}, Time: {{ res[2] }}, Party Size: {{ res[3] }},
+        Status: {{ res[4] }}, Special Requests: {{ res[5] }}
+    </li>
     {% endfor %}
 </ul>
+<form method="POST">
+    <label>Customer:
+        <select name="customer_id" required>
+            {% for customer in customers %}
+            <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+    <label>Reservation Time: <input type="datetime-local" name="reservation_time" required></label><br>
+    <label>Party Size: <input type="number" name="party_size" required></label><br>
+    <label>Status: <input type="text" name="status" required></label><br>
+    <label>Special Requests: <textarea name="special_requests"></textarea></label><br>
+    <button type="submit">Add Reservation</button>
+</form>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Restaurant Tables</h2>
+
+<!-- Add New Table Form -->
+<form method="POST">
+    <label>Capacity: <input type="number" name="capacity" required></label><br>
+    <label>Location: <input type="text" name="location" required></label><br>
+    <button type="submit">Add Table</button>
+</form>
+
+<!-- Display Existing Tables -->
+<h3>Existing Tables</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Table ID</th>
+            <th>Capacity</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for table in tables %}
+        <tr>
+            <td>{{ table[0] }}</td>
+            <td>{{ table[1] }}</td>
+            <td>{{ table[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
