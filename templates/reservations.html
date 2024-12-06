@@ -1,27 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Reservations</h2>
-<a href="/reservations/add">Add New Reservation</a>
-<ul>
-    {% for res in reservations %}
-    <li>
-        Reservation ID: {{ res[0] }}, Customer ID: {{ res[1] }}, Time: {{ res[2] }}, Party Size: {{ res[3] }},
-        Status: {{ res[4] }}, Special Requests: {{ res[5] }}
-    </li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <label>Customer:
-        <select name="customer_id" required>
-            {% for customer in customers %}
-            <option value="{{ customer[0] }}">{{ customer[1] }}</option>
-            {% endfor %}
-        </select>
-    </label><br>
-    <label>Reservation Time: <input type="datetime-local" name="reservation_time" required></label><br>
-    <label>Party Size: <input type="number" name="party_size" required></label><br>
-    <label>Status: <input type="text" name="status" required></label><br>
-    <label>Special Requests: <textarea name="special_requests"></textarea></label><br>
-    <button type="submit">Add Reservation</button>
-</form>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Manage Reservations</h2>
+
+    <!-- Add New Reservation Form -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5>Add New Reservation</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="customer_id" class="form-label">Customer:</label>
+                    <select name="customer_id" id="customer_id" class="form-select" required>
+                        <option value="" disabled selected>Select a customer</option>
+                        {% for customer in customers %}
+                        <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="reservation_time" class="form-label">Reservation Time:</label>
+                    <input type="datetime-local" name="reservation_time" id="reservation_time" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="party_size" class="form-label">Party Size:</label>
+                    <input type="number" name="party_size" id="party_size" class="form-control" min="1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status:</label>
+                    <input type="text" name="status" id="status" class="form-control" placeholder="e.g., Confirmed, Pending" required>
+                </div>
+                <div class="mb-3">
+                    <label for="special_requests" class="form-label">Special Requests:</label>
+                    <textarea name="special_requests" id="special_requests" class="form-control" rows="3" placeholder="Add any special requests here"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">Add Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Existing Reservations Table -->
+    <h3 class="text-center">Existing Reservations</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Customer</th>
+                    <th>Time</th>
+                    <th>Party Size</th>
+                    <th>Status</th>
+                    <th>Special Requests</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in reservations %}
+                <tr>
+                    <td>{{ res[0] }}</td>
+                    <td>{{ res[1] }}</td>
+                    <td>{{ res[2] }}</td>
+                    <td>{{ res[3] }}</td>
+                    <td>{{ res[4] }}</td>
+                    <td>{{ res[5] }}</td>
+                </tr>
+                {% endfor %}
+                {% if reservations|length == 0 %}
+                <tr>
+                    <td colspan="6" class="text-center">No reservations found.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

@@ -1,13 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="text-center">Welcome, {{ session['username'] }}!</h2>
-<p class="text-center">Select an option below:</p>
-<div class="d-flex justify-content-center">
-    <ul class="list-group w-50">
-        <li class="list-group-item"><a href="/menu">Manage Menu</a></li>
-        <li class="list-group-item"><a href="/reservations">Manage Reservations</a></li>
-        <li class="list-group-item"><a href="/reviews">Manage Reviews</a></li>
-        <li class="list-group-item"><a href="/tables">Manage Tables</a></li>
-    </ul>
+<div class="text-center my-4">
+    <h2 class="display-4">Welcome, {{ session['username'] }}!</h2>
+    <p class="lead">Manage your restaurant efficiently using the tools below.</p>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Menu Management</h5>
+                <p class="card-text">View and update menu items.</p>
+                <a href="/menu" class="btn btn-dark w-100">Manage Menu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Reservations</h5>
+                <p class="card-text">Track and manage customer reservations.</p>
+                <a href="/reservations" class="btn btn-dark w-100">Manage Reservations</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Reviews</h5>
+                <p class="card-text">Read and respond to customer feedback.</p>
+                <a href="/reviews" class="btn btn-dark w-100">Manage Reviews</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Table Management</h5>
+                <p class="card-text">Update and organize table availability.</p>
+                <a href="/tables" class="btn btn-dark w-100">Manage Tables</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

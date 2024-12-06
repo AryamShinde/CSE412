@@ -1,32 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Manage Restaurant Tables</h2>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Manage Restaurant Tables</h2>
 
-<!-- Add New Table Form -->
-<form method="POST">
-    <label>Capacity: <input type="number" name="capacity" required></label><br>
-    <label>Location: <input type="text" name="location" required></label><br>
-    <button type="submit">Add Table</button>
-</form>
+    <!-- Add New Table Form -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5>Add New Table</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="capacity" class="form-label">Capacity:</label>
+                    <input type="number" name="capacity" id="capacity" class="form-control" min="1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="text" name="location" id="location" class="form-control" placeholder="e.g., Window, Patio, VIP" required>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">Add Table</button>
+            </form>
+        </div>
+    </div>
 
-<!-- Display Existing Tables -->
-<h3>Existing Tables</h3>
-<table>
-    <thead>
-        <tr>
-            <th>Table ID</th>
-            <th>Capacity</th>
-            <th>Location</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for table in tables %}
-        <tr>
-            <td>{{ table[0] }}</td>
-            <td>{{ table[1] }}</td>
-            <td>{{ table[2] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <!-- Display Existing Tables -->
+    <h3 class="text-center">Existing Tables</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Table ID</th>
+                    <th>Capacity</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for table in tables %}
+                <tr>
+                    <td>{{ table[0] }}</td>
+                    <td>{{ table[1] }}</td>
+                    <td>{{ table[2] }}</td>
+                </tr>
+                {% endfor %}
+                {% if tables|length == 0 %}
+                <tr>
+                    <td colspan="3" class="text-center">No tables found.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
