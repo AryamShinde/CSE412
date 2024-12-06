@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Reservation</h2>
+<form method="POST">
+    <label>Customer ID: <input type="number" name="customer_id" required></label><br>
+    <label>Time: <input type="datetime-local" name="time" required></label><br>
+    <label>Party Size: <input type="number" name="party_size" required></label><br>
+    <label>Special Requests: <textarea name="special_requests"></textarea></label><br>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}

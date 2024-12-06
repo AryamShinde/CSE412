@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reservations</h2>
+<a href="/reservations/add">Add New Reservation</a>
+<ul>
+    {% for res in reservations %}
+    <li>Reservation ID: {{ res[0] }}, Customer ID: {{ res[1] }}, Time: {{ res[2] }}, Party Size: {{ res[3] }}, Status: {{ res[5] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

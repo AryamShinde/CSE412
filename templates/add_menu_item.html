@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Menu Item</h2>
+<form method="POST">
+    <label>Name: <input type="text" name="name" required></label><br>
+    <label>Description: <textarea name="description" required></textarea></label><br>
+    <label>Ingredients: <textarea name="ingredients" required></textarea></label><br>
+    <label>Price: <input type="number" step="0.01" name="price" required></label><br>
+    <label>Category: <input type="text" name="category" required></label><br>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}
